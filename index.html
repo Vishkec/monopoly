@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monopoly Web</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app__header">
+      <h1>Monopoly Web</h1>
+      <div class="app__controls">
+        <button id="rollBtn" class="btn primary">Roll Dice</button>
+        <button id="endTurnBtn" class="btn" disabled>End Turn</button>
+        <button id="buildBtn" class="btn">Buy Houses/Hotel</button>
+        <button id="tradeBtn" class="btn">Trade</button>
+        <button id="restartBtn" class="btn danger">Restart</button>
+      </div>
+    </header>
+
+    <main class="app__main">
+      <section class="board" id="board">
+        <div class="board__center">
+          <div class="dice" id="dice">
+            <div class="die" id="die1">1</div>
+            <div class="die" id="die2">1</div>
+          </div>
+          <div class="center__message">Roll the dice</div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="turn" id="turnInfo"></div>
+        <div class="players" id="playersPanel"></div>
+        <div class="log" id="log"></div>
+      </aside>
+    </main>
+  </div>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h2 id="modalTitle"></h2>
+      <div id="modalBody"></div>
+      <div class="modal__actions" id="modalActions"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="setupModal" aria-hidden="true">
+    <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="setupTitle">
+      <h2 id="setupTitle">Start Game</h2>
+      <div class="room-code" id="roomCodeDisplay"></div>
+      <div class="setup">
+        <label for="playerCount">Number of players</label>
+        <select id="playerCount">
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4" selected>4</option>
+        </select>
+        <div class="setup__players" id="setupPlayers"></div>
+      </div>
+      <div class="modal__actions">
+        <button class="btn primary" id="startGameBtn">Start</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="roomModal" aria-hidden="true">
+    <div class="modal__content" role="dialog" aria-modal="true" aria-labelledby="roomTitle">
+      <h2 id="roomTitle">Multiplayer</h2>
+      <div class="setup">
+        <label for="roomName">Your name</label>
+        <input id="roomName" type="text" value="Player" />
+        <label for="roomColor">Your color</label>
+        <input id="roomColor" type="color" value="#2563eb" />
+        <label for="roomCode">Room code</label>
+        <input id="roomCode" type="text" placeholder="Enter code to join" />
+      </div>
+      <div class="modal__actions">
+        <button class="btn" id="joinRoomBtn">Join Room</button>
+        <button class="btn primary" id="createRoomBtn">Create Room</button>
+      </div>
+      <div class="room-status" id="roomStatus"></div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
